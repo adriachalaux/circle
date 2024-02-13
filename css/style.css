@@ -1,0 +1,60 @@
+/* VARIABLES */
+:root {
+    --accent: #43D2FF;
+
+    --primary: #072AC8;
+    --primary-hover: #A2D6F9;
+    --primary-tapped: #D1EDFF;
+
+    --secondary: #FFC600;
+    --secondary-hover: #FCE300;
+
+    --neutral-dark: #292E47;
+    --neutral-medium: #6B708D;
+    --neutral-light: #F4F6FC;
+    --neutral-blue: #ECF7FF;
+}
+
+/* TYPEFACES */
+.roboto-regular {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.roboto-medium {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.roboto-bold {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+h1 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700; 
+    font-style: normal;
+    line-height: 1.15;
+    font-size: 3.75rem;
+    color: var(--neutral-dark);
+    margin-bottom: 2rem;
+}
+
+/* GENERAL */
+body {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    font-style: normal;
+    color: var(--neutral-medium);
+    background-color: var(--neutral-light);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* CUSTOM  */
