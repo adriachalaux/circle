@@ -69,6 +69,10 @@ body {
     width: 100%;
 }
 
+section {
+    padding: 6.25rem 0;
+}
+
 a {
     text-decoration: none;
 }
@@ -110,4 +114,32 @@ a {
 .header__navigation a:hover,
 .header__navigation a.active {
     color: var(--primary);
+}
+
+/* HERO CONTENT */
+.hero__content {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+}
+
+.hero__text,
+.hero__image {
+    flex: 0 1 50%;
+}
+
+.hero__text p {
+    max-width: 35ch;
+    margin-bottom: 2rem;
+}
+
+.hero__ctas {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    font-size: 1.06rem;
+}
+
+.hero__ctas .link {
+    color: var(--neutral-medium);
 }
