@@ -56,6 +56,15 @@ h3 {
     font-weight: bold;
 }
 
+@media (max-width: 991.98px) {
+    h1 {
+        font-size: 3rem;
+    }
+    h3 {
+        font-size: 2rem;
+    }
+}
+
 /* GENERAL */
 body {
     font-family: "Roboto", sans-serif;
@@ -110,6 +119,18 @@ a {
     section, header, footer {
         margin: 0 1.5rem;
     }
+    section {
+        padding: 3rem 0;
+    }
+}
+
+@media (max-width: 991.98px) {
+    html {
+        font-size: 80%;
+    }
+    section {
+        padding: 2rem 0;
+    }
 }
 
 /* HEADER  */
@@ -135,6 +156,55 @@ a {
 .header__navigation a:hover,
 .header__navigation a.active {
     color: var(--primary);
+}
+
+.header__mobile-btn {
+    display: none;
+}
+
+@media (max-width: 991.98px) {
+    .header__content {
+        padding-top: 1rem;
+    }
+    .header__logo {
+        position: relative;
+        z-index: 200;
+    }
+    .header__mobile-btn {
+        display: block;
+        position: relative;
+        z-index: 200;
+    }
+    .header__cta {
+        display: none;
+    }
+    .header__navigation {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        background-color: var(--white);
+        z-index: 100;
+        flex-direction: column;
+        padding: 2rem 1.5rem;
+        gap: .5rem;
+        justify-content: center;
+        transition: transform 1s cubic-bezier(0.87, 0, 0.13, 1);
+        transform: translateX(100%);
+    }
+    .header__navigation.open {
+        transform: translateX(0);
+    }
+    .header__navigation a {
+        color: var(--neutral-medium);
+        font-size: 3em;
+    }
+    .header__navigation a.active,
+    .header__navigation a:hover {
+        color: var(--neutral-dark);
+    }
+
 }
 
 /* HERO CONTENT */
@@ -191,6 +261,26 @@ a {
     color: var(--primary);
 }
 
+@media (max-width: 1199.98px) {
+    .hero__image-card,
+    .hero__image-accepted {
+        width: 35%;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .hero__content {
+        flex-direction: column-reverse;
+    }
+    .hero__image {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+    .hero__text p {
+        max-width: 100%;
+    }
+}
+
 /* LOGOS */
 .logos__content {
     display: flex;
@@ -201,6 +291,17 @@ a {
 
 .logos__content img {
     filter: grayscale(1);
+}
+
+@media (max-width: 991.98px) {
+    .logos__content {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 3rem;
+    }
+    .logos__content img {
+        max-height: 2rem;
+    }
 }
 
 /* RECENT PROJECTS */
@@ -260,6 +361,21 @@ a {
 .project-card__link {
     font-size: 1.06rem;
     color: var(--primary);
+}
+
+@media (max-width: 991.98px) {
+    .recent {
+        margin-bottom: 2rem;
+    }
+    .recent__header {
+        padding-bottom: 2rem;
+    }
+    .recent__items {
+        flex-direction: column;
+    }
+    .project-card {
+        margin-bottom: .5rem;
+    }
 }
 
 /* CLIENTS */
@@ -346,6 +462,25 @@ a {
     right: 0;
 }
 
+@media (max-width: 1199.98px) {
+    .clients {
+        margin-bottom: 3rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .clients {
+        margin-bottom: 2rem;
+    }
+    .clients__content h3,
+    .client-quote__text {
+        margin-bottom: 2rem;
+    }
+    .clients__memoji {
+        display: none;
+    }
+}
+
 
 /* SERVICES */
 .services-card {
@@ -405,6 +540,18 @@ a {
     color: var(--primary);
 }
 
+@media (max-width: 991.98px) {
+    .services__header {
+        padding-bottom: 2rem;
+    }
+    .services-card {
+        margin-bottom: .5rem;
+    }
+    .services__items {
+        flex-direction: column;
+    }
+}
+
 /* QUESTIONS */
 .questions {
     background-color: var(--secondary);
@@ -458,9 +605,32 @@ button.btn {
     cursor: pointer;
 }
 
+@media (max-width: 991.98px) {
+    .questions {
+        margin-bottom: 2rem;
+    }
+
+    .questions__form {
+        margin-top: 2rem;
+        width: 95%;
+    }
+    .questions__form .input-email {
+        width: 100%;
+        padding-left: 1rem;
+    }
+    .questions__form .input-group {
+        flex-direction: column;
+    }
+    button.btn {
+        border: none;
+        padding: 1rem 4rem;
+        cursor: pointer;
+    }
+}
+
 /* FOOTER */
 footer {
-    padding: 3rem 0;
+    padding: 6.325rem 0;
     font-size: 1.06rem;
 }
 
@@ -499,6 +669,18 @@ footer {
     max-width: 30ch;
 }
 
+@media (max-width: 991.98px) {
+    footer {
+        padding: 2rem 0;
+    }
+    .footer__content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .footer__link {
+        flex: 0 1 50%;
+    }
+}
 
 
 
