@@ -80,8 +80,13 @@ section {
     margin: 0 3.75rem;
 }
 
+header, footer {
+    margin: 0 3.75rem;
+}
+
 a {
     text-decoration: none;
+    transition: var(--transition);
 }
 
 .btn {
@@ -102,7 +107,7 @@ a {
     html {
         font-size: 90%;
     }
-    section {
+    section, header, footer {
         margin: 0 1.5rem;
     }
 }
@@ -182,6 +187,10 @@ a {
     color: var(--neutral-medium);
 }
 
+.hero__ctas .link:hover {
+    color: var(--primary);
+}
+
 /* LOGOS */
 .logos__content {
     display: flex;
@@ -195,6 +204,10 @@ a {
 }
 
 /* RECENT PROJECTS */
+.recent {
+    margin-bottom: 6.25rem;
+}
+
 .recent__header {
     padding-bottom: 4.375rem;
 }
@@ -254,6 +267,7 @@ a {
     background-color: var(--neutral-dark);
     background-image: url("../img/orbit.png");
     background-size: contain;
+    margin-bottom: 6.25rem;
 }
 
 .clients__content {
@@ -337,6 +351,7 @@ a {
 .services-card {
     background-color: var(--white);
     padding: 1.875rem;
+    margin-bottom: 6.25rem;
 }
 
 .services__header {
@@ -390,8 +405,99 @@ a {
     color: var(--primary);
 }
 
+/* QUESTIONS */
+.questions {
+    background-color: var(--secondary);
+    margin-bottom: 6.25rem;
+}
+
+.questions__content h3 {
+    margin-bottom: 1rem;
+}
+
+.questions__content {
+    text-align: center;
+    color: var(--neutral-dark);
+}
+
+.questions__form {
+    margin: 4rem auto 0 auto;
+    border-radius: 0;
+    display: inline-block;
+}
+
+.questions__form .input-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.questions__form .input-email {
+    display: flex;
+    background-color: var(--white);
+    width: 25rem;
+    padding-left: 1.5rem;
+}
 
 
+.questions__form input[type=email] {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    color: var(--neutral-dark);
+    outline: none;
+    font-size: 1.06rem;
+}
+
+.questions__form input[type=email]::placeholder {
+    color: var(--neutral-dark);
+}
+
+button.btn {
+    border: none;
+    padding: 1.5rem 4rem;
+    cursor: pointer;
+}
+
+/* FOOTER */
+footer {
+    padding: 3rem 0;
+    font-size: 1.06rem;
+}
+
+.footer__content {
+    display: flex;
+}
+
+.footer__left {
+    flex: 0 1 50%;
+}
+
+.footer__right {
+    flex: 0 1 50%;
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer__link {
+    flex: 0 1 33%;
+    color: var(--neutral-medium);
+}
+
+.footer__link:hover {
+    color: var(--primary);
+}
+
+.footer__logo {
+    max-width: 6.125rem;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.footer__address {
+    max-width: 30ch;
+}
 
 
 
