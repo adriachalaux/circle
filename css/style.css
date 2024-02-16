@@ -18,6 +18,8 @@
     --white: #FFF;
 
     --transition: all .2s ease;
+    --transition-long: all .4s ease;
+    --transition-cubic: all 1s cubic-bezier(0.87, 0, 0.13, 1);
     --shadow: drop-shadow(0px 40px 90px rgba(0,0,0,.1));
 }
 
@@ -54,6 +56,7 @@ h3 {
     font-size: 2.5rem;
     color: var(--neutral-dark);
     font-weight: bold;
+    line-height: 1.25;
 }
 
 @media (max-width: 991.98px) {
@@ -108,8 +111,8 @@ a {
 }
 
 .btn:hover {
-    background-color: var(--primary-hover);
-    color: var(--neutral-dark);
+    background-color: var(--accent);
+    color: var(--white);
 }
 
 @media (max-width: 1199.98px) {
@@ -190,7 +193,7 @@ a {
         padding: 2rem 1.5rem;
         gap: .5rem;
         justify-content: center;
-        transition: transform 1s cubic-bezier(0.87, 0, 0.13, 1);
+        transition: var(--transition-cubic);
         transform: translateX(100%);
     }
     .header__navigation.open {
@@ -326,11 +329,13 @@ a {
 .project-card {
     flex: 0 1 21.25rem;
     filter: var(--shadow);
+    transition: var(--transition-long);
 }
 
 .project-card__image {
     position: relative;
     aspect-ratio: 4/2.82;
+    overflow: hidden;
 }
 
 .project-card__image img {
@@ -338,6 +343,8 @@ a {
     object-fit: cover;
     width: 100%;
     height: 100%;
+    transform: scale(1.2);
+    transition: var(--transition-long);
 }
 
 .project-card__content {
@@ -350,6 +357,11 @@ a {
     margin-bottom: .5rem;
     color: var(--neutral-dark);
     font-weight: 500;
+    transition: var(--transition);
+}
+
+.project-card__title:hover {
+    color: var(--primary);
 }
 
 .project-card__text {
@@ -358,9 +370,22 @@ a {
     color: var(--neutral-medium);
 }
 
-.project-card__link {
+.project-card__cta {
     font-size: 1.06rem;
     color: var(--primary);
+}
+
+.project__link {
+    display: block;
+}
+
+.project-card:hover {
+    transform: translateY(-1rem);
+    filter: drop-shadow(0px 60px 90px rgba(0,0,0,0.05));
+}
+
+.project-card:hover .project-card__image img {
+    transform: scale(1);
 }
 
 @media (max-width: 991.98px) {
@@ -475,6 +500,7 @@ a {
     .clients__content h3,
     .client-quote__text {
         margin-bottom: 2rem;
+        padding: 0 1.875rem;
     }
     .clients__memoji {
         display: none;
@@ -538,6 +564,11 @@ a {
 .services-card__link {
     font-size: 1.06rem;
     color: var(--primary);
+    transition: var(--transition);
+}
+
+.services-card__link:hover {
+    color: var(--accent);
 }
 
 @media (max-width: 991.98px) {
@@ -563,6 +594,7 @@ a {
 }
 
 .questions__content {
+    padding: 0 1.875rem;
     text-align: center;
     color: var(--neutral-dark);
 }
@@ -583,6 +615,10 @@ a {
     background-color: var(--white);
     width: 25rem;
     padding-left: 1.5rem;
+}
+
+.questions__form .input-email img {
+    max-width: 2rem;
 }
 
 
@@ -612,7 +648,7 @@ button.btn {
 
     .questions__form {
         margin-top: 2rem;
-        width: 95%;
+        width: 100%;
     }
     .questions__form .input-email {
         width: 100%;
