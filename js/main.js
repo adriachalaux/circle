@@ -1,27 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
-    responsiveMenu()
     getRelatedProjectData()
+    responsiveMenu()
 });
-
-/* RESPONSIVE MENU */
-function responsiveMenu() {
-    const btnMenuMobile = document.querySelector('.header__mobile-btn')
-    const menuMobile = document.querySelector('.header__navigation')
-    
-    btnMenuMobile.addEventListener('click', () => {
-        menuMobile.style.display = 'flex'
-        setTimeout(() => {
-            menuMobile.classList.toggle('open');
-            const menuMobileLinks = document.querySelectorAll('.header__navigation.open a')
-            menuMobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    menuMobile.classList.remove('open')
-                })
-            })
-        }, 10);
-    })
-}
-
 
 /* API CALL */
 function getProjects() {
@@ -63,10 +43,15 @@ function getRelatedProjectData(number) {
                     if(project) {
                         recentProject.querySelector('.project-card__title').innerHTML = project.name
                         recentProject.querySelector('.project-card__text').innerHTML = project.description
-                        recentProject.querySelector('.project-card__cta').href = `projects/${project.uuid}.html`
-                        recentProject.querySelector('.project__link').href = `projects/${project.uuid}.html`
                         recentProject.querySelector('.project-card__image img').src = project.image
                         recentProject.querySelector('.project-card__image img').alt = `${project.name}`
+                        if (number) {
+                            recentProject.querySelector('.project-card__cta').href = `${project.uuid}.html`
+                            recentProject.querySelector('.project__link').href = `${project.uuid}.html`
+                        } else {
+                            recentProject.querySelector('.project-card__cta').href = `projects/${project.uuid}.html`
+                            recentProject.querySelector('.project__link').href = `projects/${project.uuid}.html`
+                        }
                     } else {
                         alert("No project found.");
                     }
@@ -76,5 +61,26 @@ function getRelatedProjectData(number) {
             .catch(err => console.log(err));
     }
 }
+
+
+/* RESPONSIVE MENU */
+function responsiveMenu() {
+    const btnMenuMobile = document.querySelector('.header__mobile-btn')
+    const menuMobile = document.querySelector('.header__navigation')
+    
+    btnMenuMobile.addEventListener('click', () => {
+        menuMobile.style.display = 'flex'
+        setTimeout(() => {
+            menuMobile.classList.toggle('open');
+            const menuMobileLinks = document.querySelectorAll('.header__navigation.open a')
+            menuMobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menuMobile.classList.remove('open')
+                })
+            })
+        }, 10);
+    })
+}
+
 
 
