@@ -797,6 +797,63 @@ form#contactForm {
 }
 
 
+/* PROJECT */
+.project__data {
+    display: flex;
+    justify-content: space-between;
+    gap: .5rem;
+    margin-bottom: 5rem;
+}
+
+.project__title {
+    margin-bottom: 1.25rem;
+}
+
+.project__subtitle {
+    font-size: 1.5rem;   
+    color: var(--neutral-medium);
+    font-weight: 500;
+}
+
+.project__date {
+    color: var(--neutral-dark);
+}
+
+.project__date span {
+    color: var(--neutral-medium);
+}
+
+.project__image {
+    position: relative;
+    aspect-ratio: 16/6.5;
+    overflow: hidden;
+    margin-bottom: 5rem;
+}
+
+.project__image img {
+    position: absolute;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.project__description p {
+    margin-bottom: 2rem;
+}
+
+#other-projects {
+    padding-top: 0;
+}
+
+@media (max-width: 991.98px) {
+    .project__data {
+        flex-direction: column;
+        margin-bottom: 2rem;
+    }
+    .project__image {
+        margin-bottom: 2rem;
+    }
+}
+
 
 
 /* 404 PAGE */
@@ -811,6 +868,11 @@ form#contactForm {
 .error h1,
 .error p {
     margin-bottom: 1rem;
+}
+
+/* SELECTION STYLES */
+::selection {
+    background-color: var(--primary-tapped);
 }
 
 	
