@@ -108,6 +108,7 @@ a {
     font-weight: 500;
     transition: var(--transition);
     font-size: 1.06rem;
+    display: inline-block;
 }
 
 .btn:hover {
@@ -194,6 +195,7 @@ a {
         gap: .5rem;
         justify-content: center;
         transition: var(--transition-cubic);
+        display: none;
         transform: translateX(100%);
     }
     .header__navigation.open {
@@ -310,6 +312,7 @@ a {
 /* RECENT PROJECTS */
 .recent {
     margin-bottom: 6.25rem;
+    overflow: visible;
 }
 
 .recent__header {
@@ -330,6 +333,8 @@ a {
     flex: 0 1 21.25rem;
     filter: var(--shadow);
     transition: var(--transition-long);
+    transform: translate3d(0,0,0);
+    will-change: transform filter;
 }
 
 .project-card__image {
@@ -380,7 +385,7 @@ a {
 }
 
 .project-card:hover {
-    transform: translateY(-1rem);
+    transform: translateY(-1rem) translate3d(0,0,0);
     filter: drop-shadow(0px 60px 90px rgba(0,0,0,0.05));
 }
 
@@ -513,6 +518,7 @@ a {
     background-color: var(--white);
     padding: 1.875rem;
     margin-bottom: 6.25rem;
+    transform: translate3d(0,0,0);
 }
 
 .services__header {
@@ -718,7 +724,94 @@ footer {
     }
 }
 
+/* FORM */
+.contact-us__header {
+    margin-bottom: 4rem;
+}
 
+form#contactForm {
+    width: 100%;
+}
+  
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.form-row {
+    margin-bottom: .5rem;
+}
+  
+.form-group label {
+    display: block;
+    margin-bottom: .5rem;
+    color: var(--neutral-medium);
+}
+  
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    background-color: #E5E9F1;
+    border-radius: 0;
+    font-size: 1.0625rem;
+}
+
+.form-group textarea {
+    min-height: 12.5rem;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--neutral-medium);
+    opacity: .75;
+}
+  
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+  
+.form-row .form-group {
+    flex: 1;
+}
+
+#contact-us__btn {
+    width: 100%;
+}
+
+@media (max-width: 991.98px) {
+    .contact-us__header {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+
+
+
+/* 404 PAGE */
+.error {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.error h1,
+.error p {
+    margin-bottom: 1rem;
+}
 
 	
 /* MEDIA QUERIES */
