@@ -31,23 +31,47 @@ function getProjects() {
 /* RELATED PROJECTS */
 function getRelatedProjectData(number) {
     const recentProjects = document.querySelector('.recent')
+    let usedIndices = [];
+
     if (recentProjects) {
+        const recentCards = recentProjects.querySelectorAll('.project-card')
         getProjects()
             .then(res => res.json())
             .then(data => {
-                const project = data.find(project => project.uuid === number)
-                if(project) {
-                    document.querySelector('.project__title').innerHTML = project.name
-                    document.querySelector('.project__subtitle').innerHTML = project.description
-                    document.querySelector('.project__date span').innerHTML = project.completed_on
-                    document.querySelector('.project__image--show img').src = project.image
-                    document.querySelector('.project__image--show img').alt = `${project.name}`
-                    document.querySelector('.project__image--effect img').src = project.image
-                    document.querySelector('.project__image--effect img').alt = `${project.name}`
-                    document.querySelector('.project__description p').innerHTML = project.content
-                } else {
-                    alert("No project found.");
+                // Reordenar los proyectos por su identificador de forma ascendente
+                const orderedData = data.sort((a, b) => parseInt(a.uuid) - parseInt(b.uuid));
+
+                if (data.length < recentCards.length) {
+                    console.error('No hay suficientes proyectos para mostrar');
+                    return;
                 }
+
+                recentCards.forEach((recentProject) => {
+                    let randomIndex;
+
+                    // Buscar un índice que no esté utilizado
+                    do { randomIndex = Math.floor(Math.random() * orderedData.length);
+                    } while (usedIndices.includes(randomIndex) || randomIndex === parseInt(number, 10) - 1);
+
+                    usedIndices.push(randomIndex); 
+
+                    console.log(randomIndex)
+
+                    const project = data[randomIndex]
+
+                    console.log(project)
+                    if(project) {
+                        recentProject.querySelector('.project-card__title').innerHTML = project.name
+                        recentProject.querySelector('.project-card__text').innerHTML = project.description
+                        recentProject.querySelector('.project-card__cta').href = `projects/${project.uuid}.html`
+                        recentProject.querySelector('.project__link').href = `projects/${project.uuid}.html`
+                        recentProject.querySelector('.project-card__image img').src = project.image
+                        recentProject.querySelector('.project-card__image img').alt = `${project.name}`
+                    } else {
+                        alert("No project found.");
+                    }
+                })
+                
             })
             .catch(err => console.log(err));
     }

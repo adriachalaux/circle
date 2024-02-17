@@ -2,7 +2,9 @@ window.addEventListener("load", (event) => {
     const url = window.location.href; // Get URL
     const fileNameWithExtension = url.split('/').pop(); // Just get the page file name 
     const fileName = fileNameWithExtension.split('.').shift(); // Remove the extension
+    
     getProjectData(fileName)
+    getRelatedProjectData(fileName)
 });
 
 /* GENERAL PROJECT DATA */
