@@ -1,7 +1,6 @@
-
 document.addEventListener("DOMContentLoaded", function() {
     responsiveMenu()
-    formValidation()
+    getRelatedProjectData()
 });
 
 /* RESPONSIVE MENU */
@@ -23,48 +22,35 @@ function responsiveMenu() {
     })
 }
 
-/* FORM VALIDATION */
-function formValidation() {
-    const form = document.getElementById("contactForm");
 
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-      
-      const fullName = document.getElementById("fullName").value;
-      const email = document.getElementById("email").value;
-      const phone = document.getElementById("phone").value;
-      let valid = true;
-
-      if (fullName.trim() === "") {
-        alert("Please enter your full name.");
-        valid = false;
-      }
-
-      if (fullName.trim().toLowerCase() === "ironhack") {
-        alert("You cannot be Ironhack, because I am Ironhack.");
-        valid = false;
-      }
-  
-      if (!email.includes("@")) {
-        alert("Please enter a valid email address.");
-        valid = false;
-      }
-  
-      if (!phone.match(/[0-9]{6,}/)) {
-        alert("Please enter a valid phone number with at least 6 digits.");
-        valid = false;
-      }
-  
-      if (valid) {
-        form.submit();
-      }
-    });
+/* API CALL */
+function getProjects() {
+    return fetch('https://raw.githubusercontent.com/ironhack-jc/mid-term-api/main/projects')
 }
 
-
-/* 404 PAGE */
-// document.getElementById('go-back').addEventListener('click', function() {
-//     window.history.back();
-// });
+/* RELATED PROJECTS */
+function getRelatedProjectData(number) {
+    const recentProjects = document.querySelector('.recent')
+    if (recentProjects) {
+        getProjects()
+            .then(res => res.json())
+            .then(data => {
+                const project = data.find(project => project.uuid === number)
+                if(project) {
+                    document.querySelector('.project__title').innerHTML = project.name
+                    document.querySelector('.project__subtitle').innerHTML = project.description
+                    document.querySelector('.project__date span').innerHTML = project.completed_on
+                    document.querySelector('.project__image--show img').src = project.image
+                    document.querySelector('.project__image--show img').alt = `${project.name}`
+                    document.querySelector('.project__image--effect img').src = project.image
+                    document.querySelector('.project__image--effect img').alt = `${project.name}`
+                    document.querySelector('.project__description p').innerHTML = project.content
+                } else {
+                    alert("No project found.");
+                }
+            })
+            .catch(err => console.log(err));
+    }
+}
 
 
