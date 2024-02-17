@@ -823,6 +823,11 @@ form#contactForm {
     color: var(--neutral-medium);
 }
 
+.project__image-container {
+    position: relative;
+    transform: translate3d(0,0,0);
+}
+
 .project__image {
     position: relative;
     aspect-ratio: 16/6.5;
@@ -834,6 +839,21 @@ form#contactForm {
     position: absolute;
     object-fit: cover;
     object-position: center center;
+}
+
+.project__image--effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    overflow: visible;
+}
+
+.project__image--effect img {
+    filter: blur(30px);
+    opacity: .3;
+    aspect-ratio: 16/6.5;
 }
 
 .project__description p {
