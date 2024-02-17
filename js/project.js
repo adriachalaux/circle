@@ -1,18 +1,17 @@
-window.addEventListener("load", (event) => {
-    const url = window.location.href; // Get URL
-    const fileNameWithExtension = url.split('/').pop(); // Just get the page file name 
-    const fileName = fileNameWithExtension.split('.').shift(); // Remove the extension
-    
-    getProjectData(fileName)
-    getRelatedProjectData(fileName)
-});
+import { getProjects, getProjectIdFromURL, getRelatedProjectData, responsiveMenu } from "./utils.js";
+
+function setProjectData() {
+    const projectId = getProjectIdFromURL()
+
+    getProjectData(projectId)
+    getRelatedProjectData(projectId)
+}
 
 /* GENERAL PROJECT DATA */
-function getProjectData(number) {
+function getProjectData(projectId) {
     getProjects()
-        .then(res => res.json())
         .then(data => {
-            const project = data.find(project => project.uuid === number)
+            const project = data.find(project => project.uuid === projectId)
             if(project) {
                 document.querySelector('.project__title').innerHTML = project.name
                 document.querySelector('.project__subtitle').innerHTML = project.description
@@ -23,10 +22,13 @@ function getProjectData(number) {
                 document.querySelector('.project__image--effect img').alt = `${project.name}`
                 document.querySelector('.project__description p').innerHTML = project.content
             } else {
-                alert("No project found.");
+                // alert("No project found.");
             }
         })
         .catch(err => console.log(err));
 }
 
-
+window.addEventListener("load", (event) => {
+    responsiveMenu();
+    setProjectData();
+});
