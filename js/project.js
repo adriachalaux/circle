@@ -1,4 +1,4 @@
-import { getProjects, getProjectIdFromURL, getRelatedProjectData, responsiveMenu } from "./utils.js";
+import { responsiveMenu, getProjects, getProjectIdFromURL, getRelatedProjectData } from "./utils.js";
 
 function setProjectData() {
     const projectId = getProjectIdFromURL()
@@ -22,7 +22,7 @@ function getProjectData(projectId) {
                 document.querySelector('.project__image--effect img').alt = `${project.name}`
                 document.querySelector('.project__description p').innerHTML = project.content
             } else {
-                // alert("No project found.");
+                alert("No project found.");
             }
         })
         .catch(err => console.log(err));

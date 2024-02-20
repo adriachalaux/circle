@@ -35,7 +35,7 @@ function responsiveMenu() {
 }
 
 /* RELATED PROJECTS */
-function getRelatedProjectData(number) {
+function getRelatedProjectData(projectId) {
     const recentProjects = document.querySelector('.recent')
     let usedIndices = [];
 
@@ -57,7 +57,7 @@ function getRelatedProjectData(number) {
 
                     // Buscar un índice que no esté utilizado
                     do { randomIndex = Math.floor(Math.random() * orderedData.length);
-                    } while (usedIndices.includes(randomIndex) || randomIndex === parseInt(number, 10) - 1);
+                    } while (usedIndices.includes(randomIndex) || randomIndex === parseInt(projectId, 10) - 1);
 
                     usedIndices.push(randomIndex); 
                     const project = data[randomIndex]
