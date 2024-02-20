@@ -1,6 +1,6 @@
-import { getRelatedProjectData, responsiveMenu } from "./utils.js";
+import { getRelatedProjectsData, responsiveMenu } from "./utils.js";
 
 window.addEventListener("load", (event) => {
     responsiveMenu()
-    getRelatedProjectData()
+    getRelatedProjectsData()
 });
