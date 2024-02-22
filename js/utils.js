@@ -46,7 +46,16 @@ function getRelatedProjectsData(projectId) {
         getProjects()
             .then(data => {
                 // Reordenar los proyectos por su identificador de forma ascendente
-                const orderedData = data.sort((a, b) => parseInt(a.uuid) - parseInt(b.uuid));
+                const orderedData = data.sort((a, b) => parseInt(a.uuid) - parseInt(b.uuid))
+                
+                 // Filtrar el proyecto actual
+                const filteredData = orderedData.filter(project => parseInt(project.uuid) !== parseInt(projectId));
+
+                // Mezclar aleatoriamente el array filtrado
+                const shuffledData = filteredData.sort(() => 0.5 - Math.random());
+
+                // Seleccionar los primeros elementos según la cantidad de recentCards
+                const selectedProjects = shuffledData.slice(0, recentCards.length);
 
                 // Mostrar error si no hay suficientes proyectos para mostrar
                 if (data.length < recentCards.length) {
@@ -54,24 +63,16 @@ function getRelatedProjectsData(projectId) {
                     return;
                 }
 
-                recentCards.forEach((recentProject) => {
-                    let randomIndex;
-
-                    // Buscar un índice que no esté utilizado
-                    do { randomIndex = Math.floor(Math.random() * orderedData.length);
-                    } while (usedIndices.includes(randomIndex) || randomIndex === parseInt(projectId, 10) - 1);
-
-                    // Cuando encuentro el índice lo añado al array de índices usados
-                    usedIndices.push(randomIndex); 
-                    const project = data[randomIndex]
-
+                recentCards.forEach((recentProject, index) => {
+                    const project = selectedProjects[index];
+        
                     // Validamos que existe el proyecto en el índice y editamos el DOM
                     if(project) {
-                        fillRecentProjectsData(recentProject, project)
+                        fillRecentProjectsData(recentProject, project);
                     } else {
                         alert("No project found.");
                     }
-                })
+                });
                 
             })
             .catch(err => console.log(err));
