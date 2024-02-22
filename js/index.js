@@ -8,8 +8,4 @@ window.addEventListener("load", (event) => {
             drawCards(projectsShuffled)
         })
         .catch(err => console.error(err))
-
-    // Obtenemos los proyectos
-    // Ordenamos al reves y aleatorizamos los proyectos
-    // Pintamos las tarjetas con la info de cada uno de los proyectos
 });

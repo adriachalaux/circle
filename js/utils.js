@@ -59,8 +59,7 @@ function getRelatedProjectsData() {
 }
 
 function orderAndShuffleProjects(projects, projectId) {
-    const recentProjectsTag = document.querySelector('.recent')
-    const recentCards = recentProjectsTag.querySelectorAll('.project-card')
+    const recentCards = document.querySelectorAll('.recent .project-card')
 
     // Reordenar los proyectos por su identificador de forma ascendente
     const orderedData = projects.reverse()
@@ -78,8 +77,7 @@ function orderAndShuffleProjects(projects, projectId) {
 }
 
 function drawCards(selectedProjects) {
-    const recentProjectsTag = document.querySelector('.recent')
-    const recentCards = recentProjectsTag.querySelectorAll('.project-card')
+    const recentCards = document.querySelectorAll('.recent .project-card')
 
     recentCards.forEach((recentProject, index) => {
         const project = selectedProjects[index];
