@@ -1,4 +1,4 @@
-import { responsiveMenu, getProjects, getProjectIdFromURL, getRelatedProjectsData } from "./utils.js";
+import { responsiveMenu, drawCards, getProjects, getProjectIdFromURL, getRelatedProjectsData, orderAndShuffleProjects } from "./utils.js";
 
 function setProjectData() {
     // Buscamos la ID del proyecto según la URL
@@ -7,6 +7,11 @@ function setProjectData() {
     // Pintamos la info del proyecto y de los relacionados
     getProjectData(projectId)
     getRelatedProjectsData(projectId)
+        .then(projects => {
+            const projectsShuffled = orderAndShuffleProjects(projects, projectId)
+            drawCards(projectsShuffled)
+        })
+        .catch(err => console.err(err))
 }
 
 /* GENERAL PROJECT DATA */

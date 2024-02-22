@@ -37,45 +37,60 @@ function responsiveMenu() {
 }
 
 /* GET RELATED PROJECTS DATA */
-function getRelatedProjectsData(projectId) {
-    const recentProjectsTag = document.querySelector('.recent')
+function getRelatedProjectsData() {
+    return new Promise((resolve, reject) => {
+        const recentProjectsTag = document.querySelector('.recent')
 
-    if (recentProjectsTag) {
-        const recentCards = recentProjectsTag.querySelectorAll('.project-card')
-        getProjects()
-            .then(data => {
-                // Reordenar los proyectos por su identificador de forma ascendente
-                const orderedData = data.sort((a, b) => parseInt(a.uuid) - parseInt(b.uuid))
-                
-                 // Filtrar el proyecto actual
-                const filteredData = orderedData.filter(project => parseInt(project.uuid) !== parseInt(projectId));
-
-                // Mezclar aleatoriamente el array filtrado
-                const shuffledData = filteredData.sort(() => 0.5 - Math.random());
-
-                // Seleccionar los primeros elementos según la cantidad de recentCards
-                const selectedProjects = shuffledData.slice(0, recentCards.length);
-
-                // Mostrar error si no hay suficientes proyectos para mostrar
-                if (data.length < recentCards.length) {
-                    console.error('No hay suficientes proyectos para mostrar');
-                    return;
-                }
-
-                recentCards.forEach((recentProject, index) => {
-                    const project = selectedProjects[index];
-        
-                    // Validamos que existe el proyecto en el índice y editamos el DOM
-                    if(project) {
-                        fillRecentProjectsData(recentProject, project);
-                    } else {
-                        alert("No project found.");
+        if (recentProjectsTag) {
+            const recentCards = recentProjectsTag.querySelectorAll('.project-card')
+            getProjects()
+                .then(data => {
+                    // Mostrar error si no hay suficientes proyectos para mostrar
+                    if (data.length < recentCards.length) {
+                        console.error('No hay suficientes proyectos para mostrar');
+                        reject([])
                     }
-                });
-                
-            })
-            .catch(err => console.log(err));
-    }
+
+                    resolve(data)
+                })
+                .catch(err => reject(err));
+        }
+    })
+}
+
+function orderAndShuffleProjects(projects, projectId) {
+    const recentProjectsTag = document.querySelector('.recent')
+    const recentCards = recentProjectsTag.querySelectorAll('.project-card')
+
+    // Reordenar los proyectos por su identificador de forma ascendente
+    const orderedData = projects.reverse()
+
+    // Filtrar el proyecto actual
+    const filteredData = orderedData.filter(project => parseInt(project.uuid) !== parseInt(projectId));
+
+    // Mezclar aleatoriamente el array filtrado
+    const shuffledData = filteredData.sort(() => 0.5 - Math.random());
+
+    // Seleccionar los primeros elementos según la cantidad de recentCards
+    const selectedProjects = shuffledData.slice(0, recentCards.length);
+    
+    return selectedProjects;
+}
+
+function drawCards(selectedProjects) {
+    const recentProjectsTag = document.querySelector('.recent')
+    const recentCards = recentProjectsTag.querySelectorAll('.project-card')
+
+    recentCards.forEach((recentProject, index) => {
+        const project = selectedProjects[index];
+
+        // Validamos que existe el proyecto en el índice y editamos el DOM
+        if(project) {
+            fillRecentProjectsData(recentProject, project);
+        } else {
+            alert("No project found.");
+        }
+    });
 }
 
 /* RECENT PROJECTS DOM MANIPULATION */
@@ -90,8 +105,10 @@ function fillRecentProjectsData(recentProject, project) {
 }
 
 export {
+    drawCards,
     getProjects,
     getProjectIdFromURL,
     getRelatedProjectsData,
+    orderAndShuffleProjects,
     responsiveMenu
 }
