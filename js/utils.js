@@ -39,7 +39,6 @@ function responsiveMenu() {
 /* GET RELATED PROJECTS DATA */
 function getRelatedProjectsData(projectId) {
     const recentProjectsTag = document.querySelector('.recent')
-    let usedIndices = [];
 
     if (recentProjectsTag) {
         const recentCards = recentProjectsTag.querySelectorAll('.project-card')
