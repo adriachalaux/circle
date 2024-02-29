@@ -252,7 +252,7 @@ a {
     position: absolute;
     bottom: -2rem;
     right: 0;
-    animation: float 6s ease-in-out infinite;
+    animation: float 7s ease-in-out infinite;
     z-index: 10;
 }
 
